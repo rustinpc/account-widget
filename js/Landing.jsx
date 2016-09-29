@@ -1,8 +1,12 @@
 const React = require('react')
+const AccountDesc = require('./AccountDescription')
 
 const Landing = () => (
-  <div className='home-info'>
-    boop
+  <div>
+    <AccountDesc />
+    <div className='home-info'>
+      boops
+    </div>
   </div>
 )
 
