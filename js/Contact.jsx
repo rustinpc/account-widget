@@ -1,6 +1,10 @@
 const React = require('react')
+const { object } = React.PropTypes
 
 const Contact = React.createClass({
+  propTypes: {
+    contact: object.isRequired
+  },
   render: function () {
     return (
       <div>

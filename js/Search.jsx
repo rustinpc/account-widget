@@ -1,6 +1,10 @@
 const React = require('react')
+const { func } = React.PropTypes
 
 const Search = React.createClass({
+  propTypes: {
+    onQuery: func.isRequired
+  },
   getInitialState: function () {
     return {
       ContactFirstName: '',
@@ -16,33 +20,22 @@ const Search = React.createClass({
     this.setState({ContactLastName: event.target.value})
   },
   handlePhoneChange: function (event) {
-    console.log(event.target)
     this.setState({Phone: event.target.value})
   },
   handleEmailChange: function (event) {
-    console.log(event.target)
     this.setState({Email: event.target.value})
   },
   handleSubmit: function (event) {
-    console.log(this.requestBuildQueryString(this.state))
-  },
-  requestBuildQueryString: function (params) {
-    var queryString = []
-    for (var property in params) {
-      if (params.hasOwnProperty(property)) {
-        queryString.push(encodeURIComponent(property) + '=' + encodeURIComponent(params[property]))
-      }
-    }
-    return queryString.join('&')
+    this.props.onQuery(this.state)
   },
   render () {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           First name:
-          <input type="text" name="firstname" value={this.state.contactFirstName} onChange={this.handleFirstNameChange} />
+          <input type="text" name="firstname" value={this.state.ContactFirstName} onChange={this.handleFirstNameChange} />
           Last name:
-          <input type="text" name="lastname" value={this.state.contactLastName} onChange={this.handleLastNameChange} />
+          <input type="text" name="lastname" value={this.state.ContactLastName} onChange={this.handleLastNameChange} />
           Phone:
           <input type="text" name="phone" value={this.state.Phone} onChange={this.handlePhoneChange} />
           Email:

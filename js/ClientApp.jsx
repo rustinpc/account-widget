@@ -2,17 +2,33 @@ const React = require('react')
 const ReactDOM = require('react-dom')
 const Landing = require('./Landing')
 const Layout = require('./Layout')
-const { Router, Route, IndexRoute, hashHistory } = require('react-router')
 const { contacts } = require('../public/contacts')
 
 const App = React.createClass({
+  getInitialState: function () {
+    return {
+      contacts: []
+    }
+  },
+  requestBuildQueryString: function (params) {
+    var queryString = []
+    for (var property in params) {
+      if (params.hasOwnProperty(property)) {
+        queryString.push(encodeURIComponent(property) + '=' + encodeURIComponent(params[property]))
+      }
+    }
+    return queryString.join('&')
+  },
+  selectContacts (query, lastname) {
+    this.requestBuildQueryString(this.state)
+    const filtered = contacts.filter((contact) => contact.LastName === query.ContactLastName)
+    this.setState({contacts: filtered})
+  },
   render () {
     return (
-      <Router history={hashHistory}>
-        <Route path='/' component={Layout}>
-          <IndexRoute component={Landing} contacts={contacts} />
-        </Route>
-      </Router>
+      <Layout>
+        <Landing contacts={this.state.contacts} onQuery={this.selectContacts} />
+      </Layout>
     )
   }
 })
