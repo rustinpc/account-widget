@@ -7,8 +7,12 @@ const { contacts } = require('../public/contacts')
 const App = React.createClass({
   getInitialState: function () {
     return {
-      contacts: []
+      contacts: [],
+      selectedContact: {}
     }
+  },
+  updateState: function () {
+    console.log(this.state.selectedContact)
   },
   requestBuildQueryString: function (params) {
     var queryString = []
@@ -24,11 +28,16 @@ const App = React.createClass({
     const filtered = contacts.filter((contact) => contact.LastName === query.ContactLastName)
     this.setState({contacts: filtered})
   },
+  selectContact (contact) {
+    this.setState({selectedContact: contact}, this.updateState)
+  },
   render () {
     return (
-      <Layout>
-        <Landing contacts={this.state.contacts} onQuery={this.selectContacts} />
-      </Layout>
+      <div>
+        <Layout>
+          <Landing contacts={this.state.contacts} onSelect={this.selectContact} onQuery={this.selectContacts} />
+        </Layout>
+      </div>
     )
   }
 })

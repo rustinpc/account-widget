@@ -33,7 +33,7 @@ const Search = React.createClass({
       <div className='flex-container'>
         <div className='search-box'>
           <div>
-            <b className = 'title'>Shitty Contact Search</b>
+            <b className='title'>Shitty Contact Search</b>
           </div>
           <form onSubmit={this.handleSubmit}>
             <div>

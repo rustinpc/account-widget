@@ -1,19 +1,20 @@
 const React = require('react')
 const Contact = require('./Contact')
-const { array } = React.PropTypes
+const { func, array } = React.PropTypes
 
 const ContactList = React.createClass({
   propTypes: {
-    contacts: array.isRequired
+    contacts: array.isRequired,
+    onSelect: func.isRequired
   },
   render: function () {
     return (
       <ul>
         {this.props.contacts.map(function (contact, i) {
           return <li key={i}>
-            <Contact contact={contact} />
+            <Contact onSelect={this.props.onSelect} contact={contact} />
           </li>
-        })}
+        }, this)}
       </ul>
     )
   }

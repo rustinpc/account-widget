@@ -6,13 +6,14 @@ const { func, array } = React.PropTypes
 const Landing = React.createClass({
   propTypes: {
     onQuery: func.isRequired,
+    onSelect: func.isRequired,
     contacts: array.isRequired
   },
   render: function () {
     return (
       <div>
         <Search onQuery={this.props.onQuery} />
-        <ContactList contacts={this.props.contacts} />
+        <ContactList onSelect={this.props.onSelect} contacts={this.props.contacts} />
       </div>
     )
   }
