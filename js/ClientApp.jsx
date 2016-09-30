@@ -11,7 +11,7 @@ const App = React.createClass({
       selectedContact: {}
     }
   },
-  updateState: function () {
+  handleUpdateState: function () {
     console.log(this.state.selectedContact)
   },
   requestBuildQueryString: function (params) {
@@ -29,7 +29,7 @@ const App = React.createClass({
     this.setState({contacts: filtered})
   },
   selectContact (contact) {
-    this.setState({selectedContact: contact}, this.updateState)
+    this.setState({selectedContact: contact}, this.handleUpdateState)
   },
   render () {
     return (
