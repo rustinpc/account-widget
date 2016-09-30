@@ -30,19 +30,27 @@ const Search = React.createClass({
   },
   render () {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          First name:
-          <input type="text" name="firstname" value={this.state.ContactFirstName} onChange={this.handleFirstNameChange} />
-          Last name:
-          <input type="text" name="lastname" value={this.state.ContactLastName} onChange={this.handleLastNameChange} />
-          Phone:
-          <input type="text" name="phone" value={this.state.Phone} onChange={this.handlePhoneChange} />
-          Email:
-          <input type="email" name="email" value={this.state.Email} onChange={this.handleEmailChange} />
-          <input type="text" name="emais" onChange={this.handleSubmit} />
-          <button type="submit">Search</button>
-        </form>
+      <div className='flex-container'>
+        <div className='search-box'>
+          <div>
+            <b className = 'title'>Shitty Contact Search</b>
+          </div>
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              First name: <input type="text" name="firstname" value={this.state.ContactFirstName} onChange={this.handleFirstNameChange} />
+            </div>
+            <div>
+              Last name: <input type="text" name="lastname" value={this.state.ContactLastName} onChange={this.handleLastNameChange} />
+            </div>
+            <div>
+              Phone: <input type="text" name="phone" value={this.state.Phone} onChange={this.handlePhoneChange} />
+            </div>
+            <div>
+              Email: <input type="email" name="email" value={this.state.Email} onChange={this.handleEmailChange} />
+            </div>
+            <button type="submit">Search</button>
+          </form>
+        </div>
       </div>
     )
   }
